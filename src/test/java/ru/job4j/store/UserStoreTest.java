@@ -1,6 +1,8 @@
 package ru.job4j.store;
 
 import org.junit.Test;
+import ru.job4j.generics.store.User;
+import ru.job4j.generics.store.UserStore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

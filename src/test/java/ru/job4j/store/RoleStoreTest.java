@@ -1,10 +1,11 @@
 package ru.job4j.store;
 
 import org.junit.Test;
+import ru.job4j.generics.store.Role;
+import ru.job4j.generics.store.RoleStore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertNull;
 
 

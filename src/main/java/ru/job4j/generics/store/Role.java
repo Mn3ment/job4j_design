@@ -1,4 +1,4 @@
-package ru.job4j.store;
+package ru.job4j.generics.store;
 
 
 public class Role extends Base{
