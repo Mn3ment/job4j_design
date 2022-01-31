@@ -26,5 +26,4 @@ public class EvenIt implements Iterator<Integer> {
         }
         return numbers[index++];
     }
-
 }
