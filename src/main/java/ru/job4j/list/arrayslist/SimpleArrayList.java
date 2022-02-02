@@ -1,10 +1,7 @@
-package ru.job4j.list.dynamic;
+package ru.job4j.list.arrayslist;
 
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 
 public class SimpleArrayList<T> implements List<T> {
@@ -23,13 +20,8 @@ public class SimpleArrayList<T> implements List<T> {
         return size == container.length;
     }
 
-    @Override
-    public void resize() {
-        T[] oldContainer = this.container;
-        this.container = (T[]) new Object[oldContainer.length * 2];
-        for (int i = 0; i < size ; i++) {
-            this.container[i] = oldContainer[i];
-        }
+    private void resize() {
+        container = Arrays.copyOf(container, container.length * 2);
     }
 
     @Override
@@ -44,34 +36,25 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T newValue) {
-        Objects.checkIndex(index, container.length);
-        T temp = container[index];
+        T temp = get(index);
         container[index] = newValue;
         return temp;
     }
 
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, container.length);
-        T temp = container[index];
+        T temp = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - index - 1);
-        container[container.length - 1] = null;
-        size --;
-/*        if (index >= 0 && index < size) {
-            for (int i = index; i < size - 1; i++) {
-                container[i] = container[i + 1];
-            }
-            size--;
-        }*/
+        container[size - 1] = null;
+        size--;
         modCount++;
         return temp;
     }
 
 
-
     @Override
     public T get(int index) {
-        Objects.checkIndex(index, container.length);
+        Objects.checkIndex(index, size);
         return container[index];
     }
 
@@ -88,6 +71,9 @@ public class SimpleArrayList<T> implements List<T> {
             private final int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return index < size;
             }
 
@@ -95,8 +81,6 @@ public class SimpleArrayList<T> implements List<T> {
             public T next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
-                } else if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
                 }
                 return container[index++];
             }

@@ -1,4 +1,4 @@
-package ru.job4j.list.dynamic;
+package ru.job4j.list.arrayslist;
 
 public interface List<T> extends Iterable<T> {
     void add(T value);
@@ -6,5 +6,4 @@ public interface List<T> extends Iterable<T> {
     T remove(int index);
     T get(int index);
     int size();
-    void resize();
 }

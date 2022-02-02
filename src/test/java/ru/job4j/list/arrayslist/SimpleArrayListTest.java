@@ -1,4 +1,4 @@
-package ru.job4j.list.dynamic;
+package ru.job4j.list.arrayslist;
 
 import org.junit.Assert;
 import org.junit.Before;
