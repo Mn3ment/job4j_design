@@ -1,13 +1,19 @@
 package ru.job4j.list.linkedlist;
 
+import java.util.NoSuchElementException;
+
 public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
         if (out.isEmpty()) {
-            while (!in.isEmpty()) {
-                out.push(in.pop());
+            if (in.isEmpty()) {
+                throw new NoSuchElementException();
+            } else {
+                while (!in.isEmpty()) {
+                    out.push(in.pop());
+                }
             }
         }
         return out.pop();
