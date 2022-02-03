@@ -7,6 +7,10 @@ public class SimpleStack<T> {
     public T pop() {
         return linked.deleteFirst();
     }
+    public boolean isEmpty() {
+        return linked.isEmpty();
+    }
+
     public void push(T value) {
         linked.addFirst(value);
     }
