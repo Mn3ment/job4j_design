@@ -50,7 +50,7 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
             private final int expectedModCount = modCount;
             Node<E> newNode = first;
             @Override
