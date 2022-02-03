@@ -44,7 +44,6 @@ public class SimpleLinkedList<E> implements List<E> {
         for (int i = 0; i < index; i++) {
             element = element.next;
         }
-        modCount++;
         return element.value;
 
     }
