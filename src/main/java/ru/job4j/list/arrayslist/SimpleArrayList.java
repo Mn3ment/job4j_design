@@ -13,7 +13,6 @@ public class SimpleArrayList<T> implements List<T> {
 
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
-        this.size = 0;
     }
 
     private boolean isFullArray() {
@@ -21,7 +20,7 @@ public class SimpleArrayList<T> implements List<T> {
     }
 
     private void resize() {
-        container = Arrays.copyOf(container, container.length * 2);
+        container = Arrays.copyOf(container, container.length * 2 + 1);
     }
 
     @Override
